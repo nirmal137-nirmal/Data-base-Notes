@@ -1,0 +1,55 @@
+Git : Git is Version Control System.
+
+    - Globally Store Code.
+    - Store the Data on GitHub.
+    - Many people work on Same Repository using Branches. (like Team)
+
+Git : Means Local.
+
+GitHub : Means Global.
+
+Git : Four Stage
+
+     Workspace ----> Staging ----> Local Repository ----> Remote Repository
+
+1). Create Repository on GitHub And Copy URL.
+
+2). Create Folder --> Open Folder --> open cmd 
+
+   Perform commands
+ 
+   1. git init
+   2. git clone URL_PAST
+
+3). Create a text file in folder
+
+   Open Terminal on same Folder 
+
+   3. git add .
+   4. git commit -m "Msg"      <----> Local Repository
+   5. git branch
+   6. git push                 <----> Remote Repository
+
+There's no need to run git add . when you've only modified an existing file.
+
+
+   7. git commit -am "msg"
+
+Main Branch ki Subbranch Creation command.
+
+   8. git checkout -b Branch_Name
+     
+     1. git add . 
+     2. git commit -m "msg"
+     3. git push origin Branch_Name
+
+Check in 
+
+ 1. git branch
+
+ 2. switch main -msg
+
+ 3. switch to branch - msg
+
+ 4. git pull  
+

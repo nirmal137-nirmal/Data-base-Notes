@@ -1,8 +1,8 @@
-DBMS : Data base management System is a software to manage create and manipulate the data.
+DBMS : Data base management System is a software that is used to create and maintain a database and provides controlled access to the data.
 
 RDBMS : Relational Database Management System is a database to store a data in a Tabular form.
 
-Type of RDBMS: MySQL, Oracle,  PostgreSQL, SQL Lite.
+Type of RDBMS: MySQL, Oracle,  PostgreSQL, SQL Lite, SQL Server
 
 SQL : Structure Query Language its a Standard language for accessing and manipulating database.
 
@@ -17,7 +17,7 @@ DCL : GRANT, REVOKE
 TCL : COMMIT, ROLLBACK
 
 
-PRIMARY KEY : Primary key is Unique or NotNUll
+PRIMARY KEY : Primary key is Unique or Not Null
 
 1. Create database DATABASE_NAME;
 

@@ -1,0 +1,15 @@
+Encapsulation is a power full mechanism to handle the run time error. 
+
+error : we can not be handle the error.
+
+exception : The exception can be handle.
+
+There are two type of types of exception 
+
+1. Checked Exception ---> Handle mandatory
+2. Unchecked Exception----> handle optional
+
+
+
+
+

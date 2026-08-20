@@ -1,6 +1,56 @@
 		depoloy project on Jenkins 
 -----------------------------------------------------------------------------------------
 
+1. Project well tested
+
+2. Change System.properties In Project ---> url = jdbc : mSQL://db:3306/p04 service name 
+
+3.update project 
+
+Right click on the project than run as 4manven build...
+in Goals --> clean install 
+            --> Select Skip test box
+            --> than apply and run 
+again right click on project and refresh 
+check in target folder war file will be created 
+
+4. than click on properties and project open in c-drive location path
+open project on vs code
+
+5. Right click on project and create a docker file and docker-compose.yml file
+add services & Docker file path
+
+6. open terminal and run this two commands 
+docker compose build
+docker compose up -d
+
+7. Docker image & docker container will be created.
+
+----------------------------------------------------------------------------------------
+
+
+1. Data Base connection
+
+2.  Click on plus icon than provide the connection name and port number
+ than provide the port 3308
+ password insert and create a new connection
+
+Than on server --> Data Export --> Select Database --> Export to self contained file --> change database name as well --> Start Export 
+
+3. Than go to this file PC 
+
+open documents
+View dumps open folder
+Right click on database and copy as path
+
+4. than go to the new Connection
+
+click on Server --> Data Import --> Import from self contained file --> past the path --> Start Import
+
+
+-----------------------------------------------------------------------------------------
+
+
 1. open Jenkins 
 
 2. create a new item  and select pipeline than click OK button 

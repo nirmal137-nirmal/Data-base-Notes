@@ -1,0 +1,192 @@
+1. Asw console login 
+2. login root user
+3. go to left bar icon 
+4. go to all services
+5. click on launch instance
+
+give name 
+Application and os images ------> select obuntu 
+Amazon machine image ----------> select 26.04 LTS, SSD volume Type and click confirm 
+Key pair login ---------> create key pain 
+                  ---------> give name and click ok than pem file will be downloaded
+firewall security ------->Select unselected security http and https 
+And click launch instance 
+  
+6. Back to EC2 
+
+go to Instances (running)
+instance id
+scroll ---> click on security --> security groups --> click on link --> Inbound rules --> edit rule --> add rule --> port range -- 8080 ---> source -- 0.0.0.0/0 ---> Than click save rule
+back to the instance running
+
+7. Create Docker Image on Docker Desktop
+
+8. Open Chrome Browser & log in to Docker Hub.
+
+9. Open Command Prompt & log in to Docker: 
+
+     docker login
+
+10. Tag the Docker images
+
+     docker tag tomcat-docker-tomcat username/tomcat:latest
+
+11.  Push the Docker images to Docker Hub
+
+     docker push username/tomcat:latest
+
+12. Connect to AWS EC2 Instance via SSH
+
+copy pem file path and IP address and change 
+
+
+     ssh -i "C:\Users\Lenovo\Downloads\demo.pem" ubuntu@18.206.89.121
+
+
+13. Right yes to connect aws account 
+
+14. Install Docker 
+
+# 1. Update packages
+
+sudo apt update
+sudo apt upgrade -y
+
+# 2. Install required packages
+
+sudo apt install -y ca-certificates curl
+
+# 3. Add Docker GPG key
+
+sudo install -m 0755 -d /etc/apt/keyrings
+
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+-o /etc/apt/keyrings/docker.asc
+
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# 4. Add Docker official repository
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo ${UBUNTU_CODENAME:-$VERSION_CODENAME}) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# 5. Update repository
+
+sudo apt update
+
+# 6. Install Docker
+
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# 7. Start Docker
+sudo systemctl enable --now docker
+
+# 8. Check Docker
+sudo systemctl status docker
+
+# 9. Allow ubuntu user to use Docker without sudo
+sudo usermod -aG docker $USER
+
+# 10. Verify
+docker --version
+
+# Grant Permissions and Restart Docker
+
+sudo usermod -aG docker $USER
+groups $USER
+sudo systemctl restart docker
+ls -l /var/run/docker.sock
+sudo chmod 666 /var/run/docker.sock
+groups $USER
+sudo systemctl restart docker
+
+# Log in to Docker on the EC2 Instance
+
+docker login
+
+# Pull the Docker images from Docker Hub
+
+docker pull username/tomcat:latest
+
+# Create a Network on AWS
+
+docker network create my-network
+
+# Run Web Application Container
+
+docker run -d --name tomcat-container --network my-network -p 8080:8080 username/tomcat:latest
+
+# View Docker Containers
+
+docker ps
+
+# Stop and Remove Specific Docker Container
+
+docker stop tomcat-container
+docker rm tomcat-container
+
+# View Logs of Docker Container
+
+docker logs tomcat-container
+
+# Remove Docker Images
+
+docker rmi username/tomcat:latest
+
+to run image url ip address + html page name 
+
+http://18.206.89.121:8080/Nirmal.html
+
+
+---------------------------------------------------------------------------------------------------------
+
+
+AWS Console
+      ↓
+EC2
+      ↓
+Launch Instance
+      ↓
+Ubuntu LTS
+      ↓
+Create Key Pair (.pem)
+      ↓
+Configure Security Group
+      ↓
+Allow HTTP / HTTPS
+      ↓
+Launch Instance
+      ↓
+Allow TCP Port 8080
+      ↓
+Create Docker Image
+      ↓
+docker login
+      ↓
+docker tag
+      ↓
+docker push
+      ↓
+Connect to EC2 using SSH
+      ↓
+Install Docker
+      ↓
+docker login
+      ↓
+docker pull
+      ↓
+docker network create
+      ↓
+docker run
+      ↓
+docker ps
+      ↓
+Open Browser
+      ↓
+http://EC2_PUBLIC_IP:8080/Nirmal.html
+      ↓
+Application Deployed Successfully ✅
+
+
+
+
+

@@ -35,7 +35,7 @@ There's no need to run git add . when you've only modified an existing file.
 
    7. git commit -am "msg"
 
-Main Branch ki Subbranch Creation command.
+Main Branch ki Sub-branch Creation command.
 
    8. git checkout -b Branch_Name
      

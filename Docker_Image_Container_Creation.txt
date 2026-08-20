@@ -1,0 +1,118 @@
+	      Create an Image and Container on Docker
+-----------------------------------------------------------------------------------------
+
+1. Create the Required Files
+
+Create the following three files in your VS Code project folder:
+
+Dockerfile
+docker-compose.yml
+Nirmal.html
+
+2. Dockerfile
+
+Use the following configuration:
+
+# Use the official Tomcat 9.0 image
+FROM tomcat:9.0
+
+
+# Copy Nirmal.html to the Tomcat ROOT web directory
+COPY Nirmal.html /usr/local/tomcat/webapps/ROOT/
+
+3. docker-compose.yml
+
+Create a docker-compose.yml file with the following configuration:
+
+
+version: '3.8'
+
+services:
+  tomcat:
+    image: tomcat:latest  # Specify the image name
+    build: .              # Build the image from the Dockerfile in the current directory
+    container_name: tomcat-container  # Custom container name
+    ports:
+      - "8080:8080"  # Maps port 8080 on host to port 8080 in the container
+
+
+Explanation:
+
+image → Specifies the Docker image name.
+build: . → Builds the image using the Dockerfile in the current directory.
+container_name → Specifies a custom name for the container.
+ports → Maps port 8080 on the host to port 8080 inside the container.
+
+
+4. Create the HTML Page
+
+Create a file named:
+
+
+Nirmal.html
+
+
+Add your HTML code to this file.
+
+5. Open the Terminal in VS Code
+
+Open your project folder in VS Code.
+
+Press:
+
+
+Ctrl + `
+
+
+This will open the integrated terminal.
+
+6. Build the Docker Image
+
+Run the following command:
+
+
+docker-compose build
+
+
+This command builds the Docker image using the Dockerfile.
+
+7. Create and Start the Container
+
+Run:
+
+
+docker-compose up -d
+
+
+This command creates and starts the Tomcat container in detached mode.
+
+8. Check the Running Container
+
+Run:
+
+
+docker ps
+
+
+You should see:
+
+tomcat-container
+9. Open the HTML Page
+
+Open your browser and enter:
+
+
+http://localhost:8080/Nirmal.html
+
+
+Your HTML page should now be displayed through the Tomcat Docker container. ✅
+
+10. Stop and Remove the Container
+
+To stop and remove the running container, use:
+
+
+docker-compose down
+
+
+This stops and removes the container created by Docker Compose.

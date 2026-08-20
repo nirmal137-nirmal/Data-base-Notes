@@ -1,0 +1,57 @@
+	 	Upload Image to Docker Hub
+---------------------------------------------------------------
+
+1. Open CMD and Run the Following Command
+
+Open CMD and run:
+
+docker login
+
+Enter your Docker Hub username and password.
+
+If the login is successful, you will see:
+
+Login Succeeded
+
+2. Check All Docker Images
+
+Run the following command:
+
+
+docker images
+
+
+This command displays all the Docker images available on your system.
+
+3. Tag the Docker Image
+
+Run the following command:
+
+
+docker tag tomcat:aws nirmal1307/tomcat-aws
+
+Explanation:
+
+      tomcat:aws        nirmal1307        tomcat-aws
+          ^                  ^                    ^
+          |                  |                    |
+      Image Name       Docker Hub Username    Image Name
+
+
+Replace nirmal1307 with your own Docker Hub username.
+
+4. Push the Image to Docker Hub
+
+Run the following command:
+
+
+docker push nirmal1307/tomcat-aws:latest
+
+
+Explanation:
+
+      nirmal1307        tomcat-aws           ^                    ^
+           |                    |
+     Docker Hub Username    Image Name
+
+The image will now be uploaded to your Docker Hub repository.

@@ -1,0 +1,37 @@
+		depoloy project on Jenkins 
+-----------------------------------------------------------------------------------------
+
+1. open Jenkins 
+
+2. create a new item  and select pipeline than click OK button 
+
+3. Scroll down and script will be display on screen and past this stages and steps 
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git url: 'https://github.com/nirmal137-nirmal/devops-basics.git', branch: 'main'
+            }
+        }
+
+        stage('Deploy Using Docker Compose') {
+            steps {
+                script {
+                    dir('tomcat-docker') {
+                        bat 'docker-compose down || docker-compose.exe down'
+                        bat 'docker-compose up -d --build || docker-compose.exe up -d --build'
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+change git hub url and dir image name 
+
+

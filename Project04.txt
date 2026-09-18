@@ -1,0 +1,217 @@
+Exception 
+
+1. com.sunilos.p4.exception Package
+
+Introduction:
+exception package ka use project mein aane wale different types ke errors/exceptions ko separately handle karne ke liye kiya gaya hai.
+
+Pure project mein agar kisi operation ke time error aaye, to hum us error ko appropriate custom exception class mein forward/throw kar sakte hain aur upar wali layer mein usko handle kar sakte hain.
+
+Classes:
+
+ApplicationException
+→ Project ke general/application-level errors ko handle karne ke liye.
+
+DatabaseException
+→ Database se related errors ko handle karne ke liye, jaise SQL error, connection error etc.
+
+DuplicateRecordException
+→ Jab database mein same record already present ho aur dobara insert karne ki koshish ho.
+
+RecordNotFoundException
+→ Jab database mein required record available nahi ho.
+
+
+
+Utility package
+
+Ji, ye utility classes project ke common helper classes hain. Inka kaam hota hai repeated logic ko ek jagah rakhna taaki controllers/models me code short rahe.
+
+Main package jo is project me use hota hai:
+- com.sunilos.p4.util
+- old version me in.co.rays.proj4.util bhi hai
+
+Ab class-wise use + operations:
+
+1) DataUtility
+Use:
+- String, Integer, Long, Date aur Timestamp ko safe format me convert karne ke liye.
+- Project me input values ko database / servlet / JSP me use karne ke liye.
+
+Operations:
+- getString(String val) → trim karta hai
+- getStringData(Object val) → object ko string me convert karta hai
+- getInt(String val) → String to int
+- getLong(String val) → String to long
+- getDate(String val) → String date ko Date me convert
+- getDateString(Date date) → Date ko string me format
+- getTimestamp(String val) → String timestamp ko Timestamp me convert
+- getTimestamp(long l) → long epoch time ko Timestamp me
+- getCurrentTimestamp() → current date-time
+- getTimestamp(Timestamp tm) → Timestamp se long time
+
+2) DataValidator
+Use:
+- User input ko valid karne ke liye.
+- Form validation me bohot use hota hai.
+
+Operations:
+- isNull(String val) → empty/null check
+- isNotNull(String val) → opposite
+- isInteger(String val)
+- isLong(String val)
+- isEmail(String val)
+- isDate(String val)
+- isName(String val)
+- isPassword(String val)
+- isPasswordLength(String val)
+- isPhoneNo(String val)
+- isMobileNo(String val) → depending on version
+
+Yani: login, signup, form fields validate karne me kaam aata hai.
+
+3) ServletUtility
+Use:
+- JSP/Servlet communication ke liye.
+- Request ko forward/redirect karna.
+- Success/error message set karna.
+- Bean/list ko request attribute me daalna.
+- Pagination values manage karna.
+
+Operations:
+- forward(page, request, response)
+- redirect(page, request, response)
+- handleException(e, request, response)
+- getMessage(key, request)
+- setMessage(key, msg, request)
+- setErrorMessage(msg, request)
+- getErrorMessage(...)
+- setSuccessMessage(msg, request)
+- getSuccessMessage(...)
+- setBean(bean, request)
+- getBean(request)
+- setList(list, request)
+- getList(request)
+- setPageNo / getPageNo
+- setPageSize / getPageSize
+- getParameter(property, request)
+
+Ye class project me controllers ke saath bahut common use hota hai.
+
+4) HTMLUtility
+Use:
+- HTML dropdown list generate karne ke liye.
+- JSP pages me dropdown options fill karne ke liye.
+
+Operations:
+- getList(String name, String selectedVal, HashMap<String, String> map)
+  → map se dropdown bana deta hai
+- getList(String name, String selectedVal, List list)
+  → list of DropdownListBean se dropdown bana deta hai
+
+Example:
+- gender dropdown
+- course dropdown
+- state/city dropdown
+
+5) EmailMessage
+Use:
+- Email payload object ke roop me.
+- EmailUtility ko data dene ke liye.
+
+Fields:
+- to
+- from
+- cc
+- bcc
+- subject
+- message
+- messageType
+
+Operations:
+- setters/getters like:
+  - setTo(), getTo()
+  - setSubject(), getSubject()
+  - setMessage(), getMessage()
+  - setMessageType(), getMessageType()
+
+6) EmailUtility
+Use:
+- Gmail/SMTP server se email send karne ke liye.
+
+Operations:
+- sendMail(EmailMessage emailMessageDTO)
+  - SMTP session create karta hai
+  - sender, recipients set karta hai
+  - subject aur content set karta hai
+  - HTML/text message type handle karta hai
+  - Transport send karta hai
+
+Important:
+- to, cc, bcc ko comma-separated string ke roop me handle karta hai
+- email.config properties file se server details read karta hai
+- mail.smtp.host, port, auth, socket factory setup karta hai
+
+7) EmailBuilder
+Use:
+- Ready-made email HTML messages create karne ke liye.
+
+Operations:
+- getUserRegistrationMessage(HashMap<String, String> map)
+- getForgetPasswordMessage(HashMap<String, String> map)
+- getChangePasswordMessage(HashMap<String, String> map)
+
+Ye emails registration, forgot password, password change ke liye use hoti hain.
+
+8) JDBCDataSource
+Use:
+- Database connection pool create karne ke liye.
+- Continuous DB connections manage karne ke liye.
+
+Operations:
+- getInstance()
+- getConnection()
+- closeConnection(Connection connection)
+- rollBack(Connection connection)
+
+Ye c3p0 connection pool use karta hai. Iska kaam hota hai DB connections efficient aur reusable banana.
+
+9) MessageSource
+Use:
+- Multi-language support ke liye.
+- ResourceBundle se message read karne ke liye.
+
+Operations:
+- getInstance()
+- getInstance(String languageCode)
+- setLocale(String lang)
+- getLanguage()
+- get(String key)
+
+Yaani:
+- English/Hindi language messages load karne me use hota hai.
+
+10) DatabaseUtility
+Use:
+- Database/Hibernate utility placeholder ke roop me.
+- Normally sessionFactory related code is commented.
+
+Operations:
+- It has commented Hibernate code:
+  - getSessionFactory()
+  - getSession()
+
+Aaj ke code me actual working functionality mostly comments me hai.
+
+Short summary:
+- DataUtility + DataValidator = data handling and validation
+- ServletUtility = request response helper
+- HTMLUtility = dropdown creation
+- EmailMessage + EmailUtility + EmailBuilder = email system
+- JDBCDataSource = database connections
+- MessageSource = localization
+- DatabaseUtility = DB utility placeholder
+
+Agar chaho toh next step me main ye bhi bata sakta hoon:
+- util package me kaun si class kis controller/model ke saath connect hoti hai
+- ya project ke real flow (login/register/course/admin) me in classes ka use kis sequence me hota hai.
